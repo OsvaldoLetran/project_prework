@@ -11,7 +11,8 @@ def generate_bar_chart(labels, values):
 
 def generate_pie_chart(labels, values):
     fig, ax = plt.subplots()
-    ax.pie(values, labels = labels, rotatelabels = True)
+    ax.pie(values, labels = labels, rotatelabels = True, 
+        wedgeprops = {"linewidth": 1, "edgecolor": "white"})
     ax.axis('equal')
     plt.show()
     # plt.savefig('pie.png')

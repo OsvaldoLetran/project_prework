@@ -1,14 +1,15 @@
-import utils
-import read_csv
 import charts
+import read_csv
+import utils
 import pandas as pd
 
 
 def run():
     data = read_csv.read_csv('data.csv')
 
+    # Grafica bar
     country = input('Type country -> ')
-    # print(country)
+    country = country.capitalize()
     result = utils.population_by_country(data, country)
 
     if len(result) > 0:
@@ -18,18 +19,16 @@ def run():
         charts.generate_bar_chart(labels, values)
         # charts.generate_bar_chart(country['Country/Territory'], labels, values)
 
-
+    # Grafica pie
     # data = list(filter(lambda item : item['Continent'] == 'Oceania',data))    
     # countries = list(map(lambda x: x['Country/Territory'], data))
     # percentages = list(map(lambda x: x['World Population Percentage'], data))
     # charts.generate_pie_chart(countries, percentages)
 
-
     df = pd.read_csv('data.csv')
     df = df[df['Continent'] == 'Africa']
     # """reasigna el valor de df a una versión filtrada que solo contiene
-    #    las filas donde la columna ‘Continent’ tiene el valor ‘Africa’
-    # """
+    #    las filas donde la columna ‘Continent’ tiene el valor ‘Africa’"""
     countries = df['Country/Territory'].values
     percentages = df['World Population Percentage'].values
     charts.generate_pie_chart(countries, percentages)
